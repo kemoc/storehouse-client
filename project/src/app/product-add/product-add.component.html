@@ -1,0 +1,22 @@
+<div>
+  <h2>Product Add</h2>
+  <div>
+    <label>Name<span title="Required">*</span>:
+      <ul *ngIf="error.errors !== undefined && error.errors.children['name'].errors !== undefined" class="has-error">
+          <li *ngFor="let message of error.errors.children['name'].errors; let i=index;" class="message">
+            {{message}}
+          </li>
+      </ul>
+      <input [(ngModel)]="productData.name" placeholder="Name"/>
+    </label><br>
+    <label>Amount:
+      <ul *ngIf="error.errors !== undefined && error.errors.children['amount'].errors !== undefined" class="has-error">
+        <li *ngFor="let message of error.errors.children['amount'].errors; let i=index;" class="message">
+          {{message}}
+      </ul>
+      <input [(ngModel)]="productData.amount" placeholder="Amount"/>
+    </label><br>
+  </div>
+  <button (click)="back()">Back</button>
+  <button (click)="addProduct()">Save</button>
+</div>

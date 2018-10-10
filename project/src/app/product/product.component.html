@@ -1,0 +1,39 @@
+<h2>Product List</h2>
+
+<div>
+  <button (click)="add()">
+    Add
+  </button>
+  <span [innerHTML]="htmlCOPY"></span>
+  <button (click)="getNoAmountProducts()">
+    Display no amount products
+  </button>
+  <span [innerHTML]="htmlCOPY"></span>
+  <button (click)="getMinimum5AmountProducts()">
+    Display minimum 5 amount products
+  </button>
+  <span [innerHTML]="htmlCOPY"></span>
+  <button (click)="getProducts()">
+    Display all
+  </button>
+</div>
+
+<ul class="products">
+  <li *ngFor="let p of products; let i=index;">
+    <div class="name">
+      <span class="badge"><span title="Order number">{{i+1}}</span> | <span title="ID">{{p.id}}</span></span>
+      <a routerLink="/product-details/{{p.id}}" title="Details">
+        {{p.name}}
+      </a>
+    </div>
+    <div class="amount">
+        <span title="Amount"> {{p.amount}}</span>
+    </div>
+    <div class="actions">
+      <a routerLink="/product-edit/{{p.id}}" title="Edit">
+        Edit
+      </a>
+      <button class="delete" title="Delete product"
+              (click)="delete(p.id)">x</button>
+    </div>
+  </li>

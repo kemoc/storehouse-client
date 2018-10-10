@@ -1,0 +1,8 @@
+{
+  "/storehouse/api/": {
+    "target": "http://storehouse-api.local:41480",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
