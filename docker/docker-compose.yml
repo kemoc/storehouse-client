@@ -1,0 +1,36 @@
+version: '3'
+
+#env_file:
+#  - ./.env
+
+# https://hub.docker.com/_/solr/
+# https://sematext.com/blog/docker-solr/
+# https://sematext.com/blog/docker-solr-monitoring/
+# https://github.com/docker/compose/issues/3472
+# https://github.com/docker/compose/issues/2957
+
+services:
+  app:
+    build: services/app/build/angular-6
+    image: radekz/angular_6
+    container_name: angular_6_app
+    #depends_on:
+    #  -
+    volumes:
+      - ./${APP_PATH}:${DOCKER_APP_PATH}
+      - ./services/app/etc/nginx/conf.d/project.conf:/etc/nginx/conf.d/project.conf
+      - ./log/nginx/:/var/log/nginx
+    tty: true
+    ports:
+      - ${DOCKER_APP_DEV_PORT}:4200
+      - ${DOCKER_APP_PORT}:80
+    environment:
+      - HOST_APP_DOMAIN
+      - TERM=xterm
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+  backend:
